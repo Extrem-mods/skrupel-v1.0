@@ -2,5 +2,5 @@
 .buildpath
 .settings/
 *~
-*.bak
+*.mwb.bak
 inc.config.php
