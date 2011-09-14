@@ -3,5 +3,6 @@ $lang['login'] = array(
 'userName' =>'Username',
 'passwd' =>'Passwort',
 'lostPasswd' =>'Passwort vergessen',
-'login' =>'Einlogen'
+'login' =>'Einlogen',
+'loginFail' => 'Login Fehlgeschlagen'
 );

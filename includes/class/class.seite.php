@@ -19,7 +19,7 @@ class Seite{
     global $config;
     $this->compressOutput();
     $this->_lang = $config['lang'];    
-    $this->user = new User();
+    $this->user = new User($this);
     if($this->user->isLoggedIn()){
       $this->_lang = $this->_user->getLang();
       if($this->user->GameSelected()){

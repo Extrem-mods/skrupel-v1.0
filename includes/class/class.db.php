@@ -36,7 +36,8 @@ class db extends PDO {
 		  $this->_loginInfo = array($dsn, $user, $passwd);
 			parent::__construct($dsn, $user, $passwd, $options);
 		} catch (PDOException $e) {
-			$this->error = $e->getMessage();
+			echo $e->getMessage();
+			;
 		}
 	}
 
