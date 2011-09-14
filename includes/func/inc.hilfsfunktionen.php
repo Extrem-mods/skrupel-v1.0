@@ -19,3 +19,6 @@ function zufallsstring($size = 20, $url = ONLY_LETTERS){
   }
   return $salt;
 }
+function dbErrorCallbackFunction($text){
+  echo $text;
+}

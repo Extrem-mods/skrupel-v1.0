@@ -99,7 +99,7 @@ EOT;
       <form action="{$_SERVER['PHP_SELF']}" method="POST">
       {_login.userName_}: <input type="text" name="login_name" value="">
       {_login.passwd_}: <input type="text" name="login_passwd" value="">
-      <button href="" class="button" >{_login.lostPasswd_}</button><input type="submit" name="login_sub" value="{_login.login_}"
+      <input type="submit" name="login_sub" value="{_login.login_}"><button href="" class="button" >{_login.lostPasswd_}</button>
       
       </form>
     </div>
