@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+html, body{
+  height:100%;
+}
+
+div.login{
+margin: auto auto;
+width:610px;
+height:329px;
+padding:10px;
+background:transparent url(../../images/png/login.png);  
+}
+
