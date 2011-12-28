@@ -12,7 +12,7 @@ if not, see <http://www.gnu.org/licenses/>.
 
 */ 
 
-class db extends PDO {
+class DB extends PDO {
   private $_loginInfo = array();
 	private $error;
 	private $sql;

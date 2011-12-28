@@ -1,30 +1,27 @@
 <?php
-
 require_once(PATH.'includes/class/class.game.php');
 require_once(PATH.'includes/class/class.user.php');
 
-/** Seite Kümmert sich umdie Darstellung 
+/** Kümmert sich um die Darstellung 
  *
  * Die Klasse kümmert sich um die Darstellung der Seiteninhalte udn um das ersetzen der Language Tags ({_[filename].[Parameter]_})
  *   
  */ 
-class Seite{
+class Main{
+  private $_db;
   private $_game;
   private $_user;
   private $_inhalt;
   private $_phpHeader;
   private $_lang;
   
-  public function __construct(){
+  public function __construct(DB $db){
     global $config;
     $this->compressOutput();
-    $this->_lang = $config['lang'];    
-    $this->user = new User($this);
-    if($this->user->isLoggedIn()){
-      $this->_lang = $this->_user->getLang();
-      if($this->user->GameSelected()){
-        $this->_game = new Game($this->_user->getGameID(), $this);
-      }else{
+    $this->user = new User();
+	$this->_lang = $this->_user->getLang();
+      if($this->user->isLoggedIn()){
+	    $this->build_site();
       }      
     }else{
       $this->showLoginPanel();
@@ -105,5 +102,18 @@ EOT;
     </div>
 EOT;
     $this->write($text);
-  }  
+  } 
+
+  private function build_site(){
+    if(!empty($_GET['seite']) $seite = $_GET['seite'];
+	else $seite = 'index';
+	switch ($seite{
+	
+	case 'index':
+	default:
+	
+	break;
+	}
+	
+  }
 }

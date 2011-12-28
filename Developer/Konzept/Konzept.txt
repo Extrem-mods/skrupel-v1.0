@@ -1,0 +1,4 @@
+Das neue Skrupel soll ein Paar mehr soziale Komponenten enthalten.
+Die startseite von Skrupel soll eine Art soziale Platform bieten, auf der dioe User sich austauschen, und neben bei Skrupel partien austragen können.
+Dabei ist die teilname an Mhereren Spielen gleichzeitig möglich.
+Außerdem sollen, wenn der USer es vor dem Spiel wünscht, die Spiele iin eine Userstatistik eingetragen werden. Alternativ kann er auch unter einem anderen Nick anonym an spielen Teilnehmen.
