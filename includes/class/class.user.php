@@ -1,5 +1,5 @@
 <?php
-
+namespace skrupel;
 class user{
   protected $_db;
   protected $_id;

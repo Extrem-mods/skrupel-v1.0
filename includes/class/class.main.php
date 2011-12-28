@@ -1,5 +1,5 @@
 <?php
-require_once(PATH.'includes/class/class.game.php');
+namespace skrupel;
 require_once(PATH.'includes/class/class.user.php');
 
 /** Kümmert sich um die Darstellung 
@@ -9,12 +9,11 @@ require_once(PATH.'includes/class/class.user.php');
  */ 
 class Main{
   private $_db;
-  private $_game;
   private $_user;
   private $_inhalt;
   private $_phpHeader;
   private $_lang;
-  
+  private $_site;
   public function __construct(DB $db){
     global $config;
     $this->compressOutput();
@@ -108,9 +107,18 @@ EOT;
     if(!empty($_GET['seite']) $seite = $_GET['seite'];
 	else $seite = 'index';
 	switch ($seite{
-	
+	case 'game':
+		require_once(PATH.'includes/class/ihnalt/class.game.php');
+		$this->site = new skrupel\inhalt\Game($this);
+	break;
+	case 'forum':
+	require_once(PATH.'includes/class/ihnalt/class.forum.php');
+		$this->site = new skrupel\inhalt\Forum($this);
+	break;
 	case 'index':
 	default:
+	require_once(PATH.'includes/class/ihnalt/class.start.php');
+		$this->site = new skrupel\inhalt\Start($this);
 	
 	break;
 	}

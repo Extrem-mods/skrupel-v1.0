@@ -1,4 +1,6 @@
 <?php
+namespace skrupel;
+
 define('ONLY_LETTERS',0);
 define('WITH_NUMBERS', 1);
 define('WITH_SPECIAL_CHARACTERS', 2);

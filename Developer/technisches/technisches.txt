@@ -1,3 +1,2 @@
 * HTML5
-* php > 5 (.3?)
-
+* php > 5.3 (Namensräume)
