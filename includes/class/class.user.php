@@ -5,8 +5,13 @@ class user{
   protected $_id;
   protected $_nick;
 
-  public function __construct(DB $db){
-	$this->_db = $db;
+  public function __construct(){
+	try{
+	  $this->_db = skrupel\libs\DB::getInstance();
+	}catch(\skrupel\exceptions\DB $e){
+		echo $e->getMessage();
+		return;
+	}
     $this->tryLogin();
   }
 

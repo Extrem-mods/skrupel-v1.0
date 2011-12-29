@@ -1,5 +1,6 @@
 <?php
 namespace skrupel;
+use \skrupel\libs as libs
 require_once(PATH.'includes/class/libs/class.db.php');
 require_once(PATH.'includes/class/class.user.php');
 
@@ -9,36 +10,18 @@ require_once(PATH.'includes/class/class.user.php');
  *
  */
 class Main{
-  private $_db;
-  private $_smarty;
   private $_user;
   private $_inhalt;
   private $_phpHeader;
-  private $_lang;
-  private $_site;
 
   public function __construct(){
     global $config;
-	//Datenbank
-	try{
-	  $this->_db = new skrupel\libs\DB("mysql:host={$config['DB']['host']};port={$config['DB']['port']};dbname={$config['DB']['dbname']}",
-              $config['DB']['user'] ,$config['DB']['password']);
-	} catch (skrupel\exceptions\DB $e) {
-		echo 'Es konnte keine Verbindung zur Datenbank hergestellt werden.:'.$e->getMessage();
-		exit();
-	} catch (PDOException $e) {
-		echo 'Es konnte keine Verbindung zur Datenbank hergestellt werden.:'.$e->getMessage();
-		exit();
-	}catch(Exception $e){
-		echo 'Es konnte keine Verbindung zur Datenbank hergestellt werden.:'.$e->getMessage();
-		exit();
-	}
 	//Smarty
-	$this->_smarty = new skrupel\libs\Smarty();
-
+	;
     $this->compressOutput();
     $this->user = new User();
 	$this->_lang = $this->_user->getLang();
+	libs\Smarty::get()->setLang($this->_lang);
       if($this->user->isLoggedIn()){
 	    $this->build_site();
       }
@@ -73,29 +56,17 @@ class Main{
       $titel = $config['titel'];
     }
     if(!is_array($header)) $header = array($header);
-  $text = <<<EOT
-<!Doctype html>
-<head>
-  <title>$titel</title>
-  <link rel="stylesheet" type="text/css" href="includes/css/main.css">
-
-EOT;
+	$text = '';
     foreach($header as $v){
       $text .= $v."\n";
     }
-    $text .= <<<EOT
-  </head>
-  <body>
-EOT;
-    $this->write($text);
+	ibs\Smarty::get()->assign('title', $titel);
+	ibs\Smarty::get()->assign('header', $text);
+    $this->write(libs\Smarty::get()->fetch('header.htm'));
   }
 
   public function printFooter(){
-  $text = <<<EOT
-  </body>
-</html>
-EOT;
-  $this->write($text);
+	$this->write(libs\Smarty::get()->fetch('footer.htm'));
   }
 
   private function compressOutput(){
@@ -110,17 +81,8 @@ EOT;
    */
   private function showLoginPanel(){
     $this->printHeader(null, '<link rel="stylesheet" type="text/css" href="includes/css/login.css">');
-    $text = <<<EOT
-    <div class="login">
-      <form action="{$_SERVER['PHP_SELF']}" method="POST">
-      {_login.userName_}: <input type="text" name="login_name" value="">
-      {_login.passwd_}: <input type="text" name="login_passwd" value="">
-      <input type="submit" name="login_sub" value="{_login.login_}"><button href="" class="button" >{_login.lostPasswd_}</button>
-
-      </form>
-    </div>
-EOT;
-    $this->write($text);
+	libs\Smarty::get()->addLangFile('login');
+    $this->write(libs\Smarty::get()->fetch('login.htm'));
   }
 
   private function build_site(){
