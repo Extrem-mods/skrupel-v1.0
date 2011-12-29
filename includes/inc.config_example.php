@@ -6,7 +6,7 @@ $config['DB']['host']      ='localhost';
 $config['DB']['port']      ='3306';
 $config['DB']['dbname']    ='';
 $config['DB']['user']      ='';
-$config['DB']['password']  ='';
+$config['DB']['password']  ='YZfGLR4qqYDZqJt5';
 
 //Adminzugangsdaten   //? USer Gruppen (admin/user)?
 $config['admin']['name']   = 'admin';

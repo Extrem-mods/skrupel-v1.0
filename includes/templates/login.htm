@@ -1,7 +1,7 @@
 <div class="login">
   <form action="{$smarty.server.PHP_SELF}" method="POST">
-    {lang.login.userName}: <input type="text" name="login_name" value="">
-    {lang.login.passwd_}: <input type="text" name="login_passwd" value="">
-    <input type="submit" name="login_sub" value="{lang.login.login}"><button href="" class="button" >{lang.login.lostPasswd_}</button>
+    {$lang.login.userName}: <input type="text" name="login_name" value="">
+    {$lang.login.passwd}: <input type="text" name="login_passwd" value="">
+    <input type="submit" name="login_sub" value="{$lang.login.login}"><button href="" class="button" >{$lang.login.lostPasswd}</button>
   </form>
 </div>

@@ -7,7 +7,7 @@ class user{
 
   public function __construct(){
 	try{
-	  $this->_db = skrupel\libs\DB::getInstance();
+	  $this->_db = libs\DB::getDB();
 	}catch(\skrupel\exceptions\DB $e){
 		echo $e->getMessage();
 		return;
@@ -58,11 +58,11 @@ class user{
   }
 
   public function getLang(){
-    if(isLoggedIn()){
+	global $config;
+    if($this->isLoggedIn()){
       $lang = $this->getInfo('lang');
 	  return $lang['lang'];
     }else{
-      global $config;
       return $config['lang'];
     }
   }
@@ -73,7 +73,7 @@ class user{
 	if(is_array($option)){
 	  foreach($option as $op){
 	    $op =  strlower($op);
-		if(in_array($op, $optionen)) $op2 .= $op .', '
+		if(in_array($op, $optionen)) $op2 .= $op .', ';
 	  }
 	  if(!empty($op2)) $op2 = substr($op2, 0, -2);
 	  else return NULL;

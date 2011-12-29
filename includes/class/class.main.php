@@ -1,12 +1,12 @@
 <?php
 namespace skrupel;
-use \skrupel\libs as libs
-require_once(PATH.'includes/class/libs/class.db.php');
+use \skrupel\libs as libs;
+require_once(PATH.'includes/libs/class.db.php');
+require_once(PATH.'includes/libs/class.smarty.php');
 require_once(PATH.'includes/class/class.user.php');
 
 /** Kümmert sich um die Darstellung
  *
- * Die Klasse kümmert sich um die Darstellung der Seiteninhalte udn um das ersetzen der Language Tags ({_[filename].[Parameter]_})
  *
  */
 class Main{
@@ -16,18 +16,14 @@ class Main{
 
   public function __construct(){
     global $config;
-	//Smarty
-	;
+
     $this->compressOutput();
-    $this->user = new User();
+    $this->_user = new User();
 	$this->_lang = $this->_user->getLang();
 	libs\Smarty::get()->setLang($this->_lang);
-      if($this->user->isLoggedIn()){
+      if($this->_user->isLoggedIn()){
 	    $this->build_site();
-      }
-    }else{
-      $this->showLoginPanel();
-    }
+      }else $this->showLoginPanel();
   }
 
   public function __destruct(){
@@ -60,8 +56,8 @@ class Main{
     foreach($header as $v){
       $text .= $v."\n";
     }
-	ibs\Smarty::get()->assign('title', $titel);
-	ibs\Smarty::get()->assign('header', $text);
+	libs\Smarty::get()->assign('title', $titel);
+	libs\Smarty::get()->assign('header', $text);
     $this->write(libs\Smarty::get()->fetch('header.htm'));
   }
 
@@ -86,9 +82,9 @@ class Main{
   }
 
   private function build_site(){
-    if(!empty($_GET['seite']) $seite = $_GET['seite'];
+    if(!empty($_GET['seite'])) $seite = $_GET['seite'];
 	else $seite = 'index';
-	switch ($seite{
+	switch ($seite){
 	case 'game':
 		require_once(PATH.'includes/class/ihnalt/class.game.php');
 		$this->site = new skrupel\inhalt\Game($this);
