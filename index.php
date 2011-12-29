@@ -7,11 +7,11 @@ define('PATH', dirname(__FILE__). '/');
 require_once (PATH.'includes/inc.config.php');
 require_once (PATH.'includes/inc.hilfsfunktionen.php');
 
-require_once(PATH.'includes/class/class.db.php');
+require_once(PATH.'includes/class/libs/class.db.php');
 
 //Anlegen der Datenbankverbindung
 try{
-$db = new DB("mysql:host={$config['DB']['host']};port={$config['DB']['port']};dbname={$config['DB']['dbname']}",
+$db = new skrupel\libs\DB("mysql:host={$config['DB']['host']};port={$config['DB']['port']};dbname={$config['DB']['dbname']}",
               $config['DB']['user'] ,$config['DB']['password']);
 } catch (skrupel\exceptions\DB $e) {
   echo 'Es konnte keine Verbindung zur Datenbank hergestellt werden.:'.$e->getMessage();
