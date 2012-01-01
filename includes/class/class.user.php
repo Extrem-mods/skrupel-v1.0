@@ -1,5 +1,6 @@
 <?php
-namespace skrupel;
+namespace content;
+require_once(PATH.'includes/class/exceptions/class.user.php');
 class user{
   protected $_db;
   protected $_id;
@@ -12,7 +13,6 @@ class user{
 		echo $e->getMessage();
 		return;
 	}
-    $this->tryLogin();
   }
 
   public function __destruct(){
@@ -23,7 +23,7 @@ class user{
 	return;
   }
 
-  private function tryLogin(){
+  public function tryLogin(){
     global $config;
     $this->checkLogout();
 	$this->tryAutoLogin();
@@ -35,6 +35,7 @@ class user{
             $this->login($user[0]['id'], $user[0]['nick']);
           }
         }
+		throw new exceptions\User('Spieler nicht gefunden oder Passwort falsch');
       }
     }
   }
@@ -61,10 +62,9 @@ class user{
 	global $config;
     if($this->isLoggedIn()){
       $lang = $this->getInfo('lang');
-	  return $lang['lang'];
-    }else{
-      return $config['lang'];
+	  if(!empty($lang['lang'])) return $lang['lang'];	  
     }
+      return $config['lang'];
   }
   public function getInfo($option){
 	if(!$this->isLoggedIn())  return NULL;
@@ -85,7 +85,7 @@ class user{
 	return $info[0];
   }
 
-  static function registUser($name, $email, $passwd=''){
+  static function registUser($nick, $lname, $email, $passwd=''){
 
   }
   /** fuer das erstellen eines Psswortes

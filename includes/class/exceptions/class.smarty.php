@@ -1,5 +1,5 @@
 <?php
-namespace skrupel\exceptions;
+namespace content\exceptions;
 class Smarty extends \Exception{
   
   public function __construct($message = null, $code = 0){

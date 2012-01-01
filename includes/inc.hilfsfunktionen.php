@@ -1,5 +1,5 @@
 <?php
-namespace skrupel;
+namespace content;
 
 define('ONLY_LETTERS',0);
 define('WITH_NUMBERS', 1);

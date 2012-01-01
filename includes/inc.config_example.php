@@ -1,5 +1,5 @@
 <?php
-namespace skrupel;
+namespace content;
 
 //Datenbankzugangsdaten
 $config['DB']['host']      ='localhost';

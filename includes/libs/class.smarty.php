@@ -1,9 +1,12 @@
 <?php
-namespace skrupel\libs;
+namespace content\libs;
 require_once(PATH.'includes/libs/smarty/Smarty.class.php');
 require_once(PATH.'includes/class/exceptions/class.smarty.php');
 class Smarty extends \Smarty{
 	protected $_lang;
+	protected $_headers = array();
+	protected $_errors = array();
+	
 	protected $_lang_files = null;
 	
 	static protected $_instance = null;
@@ -14,6 +17,18 @@ class Smarty extends \Smarty{
 	$this->setCacheDir(PATH.'cache/smarty/');
 	$this->setCompileDir(PATH.'cache/smarty/com/');
     $this->setConfigDir(PATH.'cache/smarty/conf/');
+	
+	//Caching
+	//$this->caching = Smarty::CACHING_LIFETIME_CURRENT;
+	//Debug Modus
+	$this->debugging = false;
+	///////////////////////////////
+	//Standart Titel festlegen
+	global $config;
+	$this->assign('title', $config['titel']);
+	
+	$this->assignByRef('headers', $this->_headers);
+	$this->assignByRef('errors', $this->_errors);
   }
 
   public function __destruct(){
@@ -35,5 +50,13 @@ class Smarty extends \Smarty{
   static public function get(){
 	if(self::$_instance === null) self::$_instance = new namespace\Smarty();
 	return self::$_instance;
+  }
+  public function addHeader($header){
+	if(is_array($header))	$this->_headers = $this->_headers + $header;
+	else $this->_headers[] = $header;
+  }
+  public function addError($error){
+	if(is_array($error)) $this->_errors = $this->_errors + $error;
+	else $this->_errors[] = $error;
   }
 }

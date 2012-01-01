@@ -1,5 +1,5 @@
 <?php
-namespace skrupel\libs;
+namespace content\libs;
 require_once(PATH.'includes/libs/db/class.db.php');
 require_once(PATH.'includes/class/exceptions/class.db.php');
 class DB extends \db{
@@ -11,12 +11,12 @@ class DB extends \db{
   public static function getDB(){
 	if(self::$_instance == null){
       global $config;
-	  try{
+	try{
 	  self::$_instance = new DB("mysql:host={$config['DB']['host']};port={$config['DB']['port']};dbname={$config['DB']['dbname']}", $config['DB']['user'] ,$config['DB']['password']);
 	}catch (PDOException $e) {
-	  throw new \skrupel\exceptions\DB('Es ist ein PDO Fehler aufgetreten:'.$e->getMessage(), $e->getCode()); 
+	  throw new \content\exceptions\DB('Es ist ein PDO Fehler aufgetreten:'.$e->getMessage(), $e->getCode()); 
 	}catch(Exception $e){
-		throw new \skrupel\exceptions\DB('Es ist ein Fehler aufgetreten:'.$e->getMessage(), $e->getCode()); 
+		throw new \content\exceptions\DB('Es ist ein Fehler aufgetreten:'.$e->getMessage(), $e->getCode()); 
 	}
 	}
 	return self::$_instance;

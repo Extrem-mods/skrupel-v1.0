@@ -1,6 +1,6 @@
 <?php
 namespace content\exceptions;
-class DB extends \Exception{
+class User extends \Exception{
   
   public function __construct($message = null, $code = 0){
     parent::__construct($message, $code);
