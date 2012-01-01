@@ -43,6 +43,7 @@ class Main{
 			$include.=$item.'/';			
 			$i++;
 		}
+		return $include.'inc.'.$item.'.php';
 		throw new \Exception('Startpunkt "'. $include.'inc.'.$item.'.php" nicht gefunden.');
 	}
 }

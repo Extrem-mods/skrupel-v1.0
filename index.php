@@ -3,6 +3,10 @@ namespace content;
 
 define('INDEX', true);
 define('PATH', dirname(__FILE__). '/');
+$protokoll = 'http';
+if(!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) != 'off')
+$protokoll = 'https';
+define('PROTOKOLL', $protokoll);
 
 if(is_dir(PATH.'install/')){
 	@include(PATH.'includes/inc.config_example.php');
@@ -11,7 +15,7 @@ if(is_dir(PATH.'install/')){
 	$dir = dirname($_SERVER['SCRIPT_NAME']);
 	libs\Smarty::get()->addError('
 	<p>Aus sicherheitsgründen kann Skrupel nicht betrieben werden, solange das Verzeichniss "'.$dir.'/install/" existiert. </p>
-	<p>Wenn Sie Skrupel noch nicht instaliert haben, führen Sie bitte das <a href="'.$_SERVER['SERVER_NAME'].$dir.'/install/install.php">Instalationsskript</a> aus und löschen Sie anschließend das Verzeichnis.</p>');
+	<p>Wenn Sie Skrupel noch nicht instaliert haben, führen Sie bitte das <a href="'.PROTOKOLL.'://'.$_SERVER['SERVER_NAME'].$dir.'/install/">Instalationsskript</a> aus und löschen Sie anschließend das Verzeichnis.</p>');
 	libs\Smarty::get()->display('header.htm');
 	libs\Smarty::get()->display('error.htm');
 	libs\Smarty::get()->display('footer.htm');
