@@ -13,6 +13,7 @@ if(is_dir(PATH.'install/')){
 	@include(PATH.'includes/inc.config.php');
 	require_once (PATH.'includes/libs/class.smarty.php');
 	$dir = dirname($_SERVER['SCRIPT_NAME']);
+	//!TODO translation 
 	libs\Smarty::get()->addError('
 	<p>Aus sicherheitsgründen kann Skrupel nicht betrieben werden, solange das Verzeichniss "'.$dir.'/install/" existiert. </p>
 	<p>Wenn Sie Skrupel noch nicht instaliert haben, führen Sie bitte das <a href="'.PROTOKOLL.'://'.$_SERVER['SERVER_NAME'].$dir.'/install/">Instalationsskript</a> aus und löschen Sie anschließend das Verzeichnis.</p>');
@@ -29,10 +30,13 @@ require_once('includes/class/class.main.php');
 $main = new Main();
 
 try{
-include $main->gehtIncludePath();
+$path = $main->gehtIncludePath();
 }catch(\Exception $e){
 	libs\Smarty::get()->addError($e->getMessage());
 	libs\Smarty::get()->display('header.htm');
 	libs\Smarty::get()->display('error.htm');
 	libs\Smarty::get()->display('footer.htm');
+	die();
 }
+
+include $path;

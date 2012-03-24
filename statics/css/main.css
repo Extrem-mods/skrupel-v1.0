@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@font-face{
+font-family: 'Perfect Dark (BKR)';
+src:local('Perfect Dark (BKR)'), local('Perfect Dark'), url('pdark.ttf');
+}
+
+body{
+background: #000;
+color:#fff;
+}
+
+.perfectDark{
+font-family: 'Perfect Dark (BKR)', san-serif;
+font-style: normal;
+}

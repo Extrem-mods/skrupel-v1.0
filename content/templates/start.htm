@@ -1,0 +1,9 @@
+<div class="wrapper">
+<h1 class="perfectDark">Skrupel - Tribute Compilation</h1>
+<ul id="news">
+{foreach $news as $id => $headline}
+<li><a href="?news-{$id}">{$headline}</a></li>
+{/foreach}
+</ul>
+<a href="#login">{$lang.start.login}</a>
+</div>

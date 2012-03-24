@@ -13,7 +13,7 @@ class Smarty extends \Smarty{
 	
   public function __construct(){
     parent::__construct();
-	$this->setTemplateDir(PATH.'includes/templates/');
+	$this->setTemplateDir(PATH.'content/templates/');
 	$this->setCacheDir(PATH.'cache/smarty/');
 	$this->setCompileDir(PATH.'cache/smarty/com/');
     $this->setConfigDir(PATH.'cache/smarty/conf/');
